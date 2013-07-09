@@ -17,6 +17,7 @@ if (Meteor.isClient) {
     return Prompts.find();
   };
 
+
   Template.wall.events({
     'click input.add': function(){
       if(Session.get("name")){
@@ -59,7 +60,11 @@ if (Meteor.isClient) {
     },
 
     'click input.vote_up': function(){
+      if(Session.get('hasVoted')){
+        return;
+      }
       Prompts.update(this._id, {$inc: {score: 1}});
+      Session.set('hasVoted', true);
     },
 
     'click input.delete': function(){
