@@ -24,7 +24,8 @@ if (Meteor.isClient) {
         var new_question = document.getElementById("new_question").value;
         if(new_question){
           Questions.insert({asker: Session.get("name"), content: new_question, score: 0, replies:[]});
-          document.getElementById("new_question").value = "";
+
+          document.getElementById("new_question").value = '';
         }
       } else {
         alert("Please enter your name");
@@ -49,22 +50,22 @@ if (Meteor.isClient) {
   Template.prompts.events({
     'click input.add': function(){
       if(Session.get("name")){
-        var new_prompt = document.getElementById("new_prompt").value;
+        var new_prompt = $(".new_prompt").val();
         if(new_prompt){
-          Prompts.insert({asker: Session.get("name"), content: new_prompt, score: 0, replies:[]});
-          document.getElementById("new_prompt").value = "";
+          var prompt = Prompts.insert({asker: Session.get("name"), content: new_prompt, score: 0, replies:[]});
+          $(".new_prompt").val();
         }
       } else {
         alert("Please enter your name");
       }
     },
 
-    'click input.vote_up': function(){
-      if(Session.get('hasVoted')){
+    'click input.vote_up': function(event){
+      if(Session.get(this._id)){
         return;
       }
+      Session.set(this._id, true);
       Prompts.update(this._id, {$inc: {score: 1}});
-      Session.set('hasVoted', true);
     },
 
     'click input.delete': function(){
