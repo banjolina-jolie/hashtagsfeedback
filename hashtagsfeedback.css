@@ -1,0 +1,12 @@
+/* CSS declarations go here */
+#new_prompt {
+  width: 500px;
+}
+
+#new_question {
+  width: 500px;
+}
+
+body {
+  background-color: #f7b4d2;
+}

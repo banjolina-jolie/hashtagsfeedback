@@ -1,0 +1,81 @@
+<head>
+  <title>Hashtags Feedback</title>
+</head>
+
+<body>
+  {{> hello}}
+  {{> wall}}
+  {{> prompts}}
+</body>
+
+<template name="hello">
+  <center><h1>Hashtags Feedback</h1></center>
+  <div>State your name soldier</div>
+  <div>
+    <input id="user_name" type="text">
+    <input class="submit_name" type="submit">
+  </div>
+  <span class="current_user">Commenting as: {{username}}</span>
+</template>
+
+<template name="wall">
+  <div>
+    <h2>Bugs</h2>
+    {{> new_question}}
+  </div>
+  {{#each questions}}
+    {{> question}}
+  {{/each}}
+</template>
+
+
+<template name="prompts">
+  <div>
+    <h2>New Prompts Ideas</h2>
+    <p>How funny are you people?</p>
+    {{> new_prompt}}
+  </div>
+  {{#each prompts}}
+    {{> prompt}}
+  {{/each}}
+</template>
+
+<template name="new_question">
+  <input id="new_question" type="text"/>
+  <input type="submit" class="add" value="Submit Bug"/>
+</template>
+
+<template name="new_prompt">
+  <input id="new_prompt" type="text"/>
+  <input type="submit" class="add" value="Submit Prompt"/>
+</template>
+
+
+<template name="question">
+  <div>
+    <input type="button" value="vote up" class="vote_up"/>
+    <span class="score"> | {{score}} | </span>
+    <span class="question">{{content}}</span>
+    <span class="asker">  - {{asker}} </span>
+    <!-- <input type="button" value="X" class="delete"/> -->
+  </div>
+ <!--  <div class="reply" data-question-id="{{_id}}">
+    <ul class="replies">
+      {{#each replies}}
+        <li>{{this.stuff}} - {{this.answerer}}</li>
+      {{/each}}
+    </ul>
+    <input class="replyText" type="text"/>
+    <input class="replyBtn" type="submit" value="answer"/>
+  </div> -->
+</template>
+
+<template name="prompt">
+  <div>
+    <input type="button" value="vote up" class="vote_up"/>
+    <span class="score"> | {{score}} | </span>
+    <span class="prompt">{{content}}</span>
+    <span class="asker">  - {{asker}} </span>
+    <!-- <input type="button" value="X" class="delete"/> -->
+  </div>
+</template>
